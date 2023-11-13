@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Authentication Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .error {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .success {
+            background-color: #4caf50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="authForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="button" onclick="authenticate()">Login</button>
+
+        <div class="message" id="message"></div>
+    </form>
+
+    <script>
+        function authenticate() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+            var messageElement = document.getElementById('message');
+
+            // Replace these with your actual credentials
+            var validUsername = 'user123';
+            var validPassword = 'pass123';
+
+            if (username === validUsername && password === validPassword) {
+                showMessage('success', 'Login successful!');
+            } else {
+                showMessage('error', 'Invalid credentials. Please try again.');
+            }
+        }
+
+        function showMessage(type, text) {
+            var messageElement = document.getElementById('message');
+            messageElement.innerHTML = text;
+            messageElement.className = 'message ' + type;
+            messageElement.style.display = 'block';
+
+            // Hide the message after 3 seconds
+            setTimeout(function () {
+                messageElement.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+
+</body>
+</html>
